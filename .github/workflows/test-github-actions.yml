@@ -5,14 +5,17 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      selected_task:
+        description: 'Select the Python task to run'
+        required: true
 
 jobs:
   run_tasks:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        selected_task: ["task1", "task2", "task3"]
+    env:
+      SELECTED_TASK: ${{ github.event.inputs.selected_task }}
 
     steps:
     - name: Checkout Repository
@@ -25,7 +28,7 @@ jobs:
 
     - name: Run Python Task
       run: |
-        case ${{ matrix.selected_task }} in
+        case $SELECTED_TASK in
           "task1")
             python task1.py
             ;;
