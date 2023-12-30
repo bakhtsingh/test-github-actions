@@ -9,6 +9,11 @@ on:
       selected_task:
         description: 'Select the Python task to run'
         required: true
+        type: choice
+        options:
+        - task1
+        - task2
+        - task3
 
 jobs:
   run_tasks:
