@@ -25,7 +25,6 @@ jobs:
     - name: Install Dependencies
       run: |
         pip install -r requirements.txt
-      working-directory: test-github-actions/
 
     - name: Run Python Task
       run: |
@@ -44,4 +43,3 @@ jobs:
             exit 1
             ;;
         esac
-      working-directory: test-github-actions/
