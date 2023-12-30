@@ -1,0 +1,47 @@
+name: Run Python Tasks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_tasks:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        selected_task: ["task1", "task2", "task3"]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+      working-directory: test-github-actions/
+
+    - name: Run Python Task
+      run: |
+        case ${{ matrix.selected_task }} in
+          "task1")
+            python task1.py
+            ;;
+          "task2")
+            python task2.py
+            ;;
+          "task3")
+            python task3.py
+            ;;
+          *)
+            echo "Invalid task selected."
+            exit 1
+            ;;
+        esac
+      working-directory: test-github-actions/
