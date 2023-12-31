@@ -6,6 +6,7 @@ on:
       selected_function:
         description: 'Select the Python task to run'
         required: false
+        default: 'run all tasks'
         type: choice
         options:
           - run all tasks
@@ -30,4 +31,4 @@ jobs:
 
     - name: Run Python Script
       run: |
-        python main.py "run all tasks"
+        python main.py "${{ github.event.inputs.selected_function }}"
