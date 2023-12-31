@@ -27,4 +27,4 @@ jobs:
 
     - name: Run Python Script
       run: |
-        python main_script.py ${{ github.event.inputs.selected_function }}
+        python main.py ${{ github.event.inputs.selected_function }}
