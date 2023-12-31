@@ -1,8 +1,20 @@
 name: Run Python Tasks
 
 on:
+  workflow_dispatch:
+    inputs:
+      selected_function:
+        description: 'Select the Python task to run'
+        required: false
+        default: 'run all tasks'
+        type: choice
+        options:
+          - run all tasks
+          - task1
+          - task2
+          - task3
   schedule:
-    - cron: '45 22 * * *'
+    - cron: '55 22 * * *'
 
 jobs:
   run_python_script:
