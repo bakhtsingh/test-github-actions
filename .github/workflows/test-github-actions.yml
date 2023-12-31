@@ -5,7 +5,7 @@ on:
     inputs:
       selected_function:
         description: 'Select the Python task to run'
-        required: false
+        required: true
         default: 'run all tasks'
         type: choice
         options:
