@@ -13,7 +13,8 @@ def run_individual_function(selected_function):
     function_mapping = {
         "task1": task1,
         "task2": task2,
-        "task3": task3
+        "task3": task3,
+        "run all tasks": run_all_functions
     }
 
     selected_function = selected_function.lower()
