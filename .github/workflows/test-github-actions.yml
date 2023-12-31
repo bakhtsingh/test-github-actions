@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '10 23 * * *'
+    - cron: '37 23 * * *'
   workflow_dispatch:
     inputs:
       selected_function:
@@ -34,4 +34,8 @@ jobs:
 
     - name: Run Python Script
       run: |
-        python main.py "${{ github.event.inputs.selected_function }}"
+          if [ ${{ github.event.inputs.selected_function }} != "" ]; then
+            python main.py "${{ github.event.inputs.selected_function }}" 
+          else 
+            python main.py "run all tasks"
+          fi
