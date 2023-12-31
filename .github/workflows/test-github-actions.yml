@@ -12,6 +12,8 @@ on:
           - task1
           - task2
           - task3
+  schedule:
+    - cron: '45 15 * * *'
 
 jobs:
   run_python_script:
