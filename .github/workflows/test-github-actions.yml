@@ -34,8 +34,8 @@ jobs:
 
     - name: Run Python Script
       run: |
-          if [ ${{ github.event.inputs.selected_function }} != "" ]; then
-            python main.py "${{ github.event.inputs.selected_function }}" 
-          else 
-            python main.py "run all tasks"
-          fi
+        if [ "${{ github.event.inputs.selected_function }}" != "" ]; then
+          python main.py "${{ github.event.inputs.selected_function }}" 
+        else 
+          python main.py "run all tasks"
+        fi
