@@ -3,14 +3,17 @@ import sys
 
 def task1(environment):
     print("Task1 Completed")
+    return "successful"
 
 def task2(environment):
     print("Task2 Completed")
+    return "successful"
 
 def task3(environment):
     task1(environment)
     task2(environment)
     print("Task3 Completed")
+    return "successful"
 
 def run_all_functions(environment):
     functions_list = [task1,task2,task3]
