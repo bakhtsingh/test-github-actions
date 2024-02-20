@@ -1,41 +1,24 @@
 name: Test Workflow 3
-
 on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: '37 23 * * *'
   workflow_dispatch:
-    inputs:
-      selected_function:
-        description: 'Select the Python task to run'
-        required: true
-        default: 'run all tasks'
-        type: choice
-        options:
-          - run all tasks
-          - task1
-          - task2
-          - task3
+  schedule:
+    - cron: '43 0 * * *'
+
+env:
+  environment: 'TEST_QA'
 
 jobs:
-  run_python_script:
+  test-input-values:
+    name: expose env variables
     runs-on: ubuntu-latest
-
+    outputs:
+      environment: ${{ env.environment }}
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-
-    - name: Run Python Script
-      run: |
-        if [ "${{ github.event.inputs.selected_function }}" != "" ]; then
-          python main.py "${{ github.event.inputs.selected_function }}" 
-        else 
-          python main.py "run all tasks"
-        fi
+      - run: |
+          echo "Running tests in ${{ env.environment }} environment"
+  test-workflow2:
+    needs: [test-input-values]
+    uses: ./.github/workflows/test-workflow2.yml
+    secrets: inherit
+    with:
+      environment: ${{ needs.test-input-values.outputs.environment }}
