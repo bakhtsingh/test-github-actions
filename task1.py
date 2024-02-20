@@ -8,8 +8,8 @@ def task2(environment):
     print("Task2 Completed")
 
 def task3(environment):
-    task1()
-    task2()
+    task1(environment)
+    task2(environment)
     print("Task3 Completed")
 
 def run_all_functions(environment):
