@@ -15,15 +15,14 @@ on:
           - run all tasks
           - task1
           - task2
-          - task3
       environment:
         description: 'Select the environment'
         required: true
         default: 'TEST_QA'
         type: choice
         options:
-          - QA
-          - PROD
+          - TEST_QA
+          - TEST_PROD
   workflow_call:
     inputs:
       selected_function:
