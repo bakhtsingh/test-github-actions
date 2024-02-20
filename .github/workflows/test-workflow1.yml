@@ -50,7 +50,7 @@ jobs:
     - name: Set environment variables
       run: |
         echo "SELECTED_FUNCTION=${{ inputs.selected_function }}" >> $GITHUB_ENV
-        echo "ENVIRONMENT=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+        echo "ENVIRONMENT=${{ inputs.environment }}" >> $GITHUB_ENV
     
     - name: Run Python Script
       run: |
