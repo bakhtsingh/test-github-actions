@@ -1,0 +1,54 @@
+name: Selenium Test Workflow with Excel Output
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install pandas beautifulsoup4 selenium openpyxl
+
+      - name: Check Chrome Version
+        run: google-chrome --version
+
+      - name: Downgrade Chrome
+        run: |
+          sudo apt-get purge google-chrome-stable
+          wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_128.0.6613.84-1_amd64.deb
+          sudo dpkg -i google-chrome-stable_128.0.6613.84-1_amd64.deb
+          sudo apt-get --only-upgrade install google-chrome-stable
+
+      - name: Check Chrome Version After Downgrade
+        run: google-chrome --version
+
+      - name: Download ChromeDriver
+        run: |
+          CHROME_DRIVER_VERSION="128.0.6613.84"  # Replace with the desired ChromeDriver version
+          curl -s -L -o chromedriver-linux64.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${CHROME_DRIVER_VERSION}/linux64/chromedriver-linux64.zip
+          unzip chromedriver-linux64.zip
+          chmod +x chromedriver
+          sudo mv chromedriver /usr/local/bin/  # Move ChromeDriver to PATH
+
+      - name: Run Python Script
+        run: python3 example_scrape.py  # Replace `your_script.py` with the actual filename of your Python script
+
+      - name: Save Excel as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: church_data_output
+          path: church_data_output2.xlsx  # Ensure this matches the filename saved in your Python script
