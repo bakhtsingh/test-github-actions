@@ -26,7 +26,6 @@ driver = webdriver.Chrome(options=chrome_options)  # Make sure ChromeDriver is i
 # URL of the page to scrape
 url = 'https://www.9marks.org/church-search/'  # Replace with the actual URL
 driver.get(url)
-input()
 
 # Load previous progress if exists
 output_file = 'church_data_output2.csv'
