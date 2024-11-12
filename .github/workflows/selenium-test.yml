@@ -48,7 +48,7 @@ jobs:
         run: python3 example_scrape.py  # Replace `your_script.py` with the actual filename of your Python script
 
       - name: Save Excel as Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: church_data_output
           path: church_data_output2.xlsx  # Ensure this matches the filename saved in your Python script
