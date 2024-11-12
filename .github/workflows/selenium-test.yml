@@ -41,8 +41,14 @@ jobs:
           CHROME_DRIVER_VERSION="128.0.6613.84"  # Replace with the desired ChromeDriver version
           curl -s -L -o chromedriver-linux64.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${CHROME_DRIVER_VERSION}/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip
+          pwd    # Print current working directory for debugging
+          ls -l
+          mv chromedriver-linux64/chromedriver .
+          ls -l
           chmod +x chromedriver
-          sudo mv chromedriver /usr/local/bin/  # Move ChromeDriver to PATH
+      - name: Move ChromeDriver to a directory in PATH
+        run: |
+          sudo mv chromedriver /usr/local/bin/
 
       - name: Run Python Script
         run: python3 example_scrape.py  # Replace `your_script.py` with the actual filename of your Python script
