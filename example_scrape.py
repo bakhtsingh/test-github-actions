@@ -41,7 +41,7 @@ except FileNotFoundError:
 processed_zips = set([record['ZIP Code'] for record in all_church_data])
 
 # Iterate over each ZIP code in the CSV
-for index, zip_code in enumerate(zip_data['zip'][27743:30000], start=27743):
+for index, zip_code in enumerate(zip_data['zip'][20000:25000], start=20000):
     if zip_code in processed_zips:
         print(f"Skipping ZIP code {zip_code} (already processed).")
         continue
